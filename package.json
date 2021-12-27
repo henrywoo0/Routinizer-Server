@@ -1,0 +1,42 @@
+{
+  "name": "routinizer-server",
+  "version": "1.0.0",
+  "description": "![routinizer logo](https://user-images.githubusercontent.com/80818534/147447230-686fcc4d-6a36-493a-8ce5-8bc29602e45a.jpg)\r ![routinizer logo reverse](https://user-images.githubusercontent.com/80818534/147447232-af77fd30-5541-40c7-acca-c017bd80c68f.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch src --exec ts-node src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whitebear05/Routinizer-Server.git"
+  },
+  "author": "whitebear",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whitebear05/Routinizer-Server/issues"
+  },
+  "homepage": "https://github.com/whitebear05/Routinizer-Server#readme",
+  "dependencies": {
+    "@types/body-parser": "^1.19.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.1",
+    "connect-mongo": "^4.4.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "mysql": "^2.18.1",
+    "typeorm": "^0.2.41"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "@types/node": "^16.11.7",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
