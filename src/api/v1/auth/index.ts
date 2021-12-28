@@ -1,7 +1,11 @@
 import { Router } from "express";
+import { upload } from "../../../middlewares";
+import join from "./auth.ctrl/join";
+import login from "./auth.ctrl/login";
 
 const router = Router();
 
-router.get("/login", (req, res) => res.send("It'll be a login function"));
+router.post("/join", upload.single("img"), join);
+router.post("/login", login);
 
 export default router;

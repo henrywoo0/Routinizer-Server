@@ -33,6 +33,7 @@ export default class User extends BaseEntity {
   school: string;
 
   @Column({
+    nullable: false,
     default: 0,
   })
   point: number;
