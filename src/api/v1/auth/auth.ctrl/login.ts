@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import User from "../../../../entity/User";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 export default async (req: Request, res: Response) => {
   const { id, password } = req.body;
@@ -11,6 +12,13 @@ export default async (req: Request, res: Response) => {
       return res.status(400).json({
         status: 400,
         message: "해당 전화번호를 가진 계정이 없습니다.",
+      });
+    }
+    const ok = await bcrypt.compare(password, user.password);
+    if (!ok) {
+      return res.status(400).json({
+        status: 400,
+        message: "비밀번호가 옳지 않습니다.",
       });
     }
     const token = jwt.sign(
