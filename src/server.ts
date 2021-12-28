@@ -4,6 +4,7 @@ import * as express from "express";
 import * as cors from "cors";
 import { createConnection } from "typeorm";
 import connectOptions from "../ormconfig";
+import api from "./api";
 
 const app = express();
 const logger = morgan("dev");
@@ -13,7 +14,7 @@ app.use(cors());
 app.use(logger);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/api", (req, res) => res.send("Hello routinizer"));
+app.use("/api", api);
 app.use("/uploads", express.static("uploads"));
 
 createConnection(connectOptions)

@@ -1,8 +1,7 @@
 import { Router } from "express";
-import v1 from "./v1";
 
 const router = Router();
 
-router.use("/v1", v1);
+router.get("/login", (req, res) => res.send("It'll be a login function"));
 
 export default router;
