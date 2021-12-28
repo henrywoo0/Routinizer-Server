@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User from "../../../../entity/User";
-import bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt";
 
 export default async (req, res: Response) => {
   const user = new User();
@@ -11,7 +11,7 @@ export default async (req, res: Response) => {
     user.name = name;
     user.school = school;
     user.id = id;
-    user.password = bcrypt.hashSync(password, 10);
+    user.password = await bcrypt.hash(password, 10);
     user.avatar = file || "";
     await user.save();
 

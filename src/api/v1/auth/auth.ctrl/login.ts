@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import User from "../../../../entity/User";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import * as jwt from "jsonwebtoken";
+import * as bcrypt from "bcrypt";
 
 export default async (req: Request, res: Response) => {
   const { id, password } = req.body;
