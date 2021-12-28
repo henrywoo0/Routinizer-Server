@@ -1,4 +1,13 @@
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from "typeorm";
+import Challenge from "./Challenge";
+import Participation from "./Participation";
 
 @Entity("User")
 export default class User extends BaseEntity {
@@ -27,6 +36,15 @@ export default class User extends BaseEntity {
   })
   avatar?: string;
 
-  //   @ManyToOne()
-  //   challenge:
+  @OneToMany((type) => Challenge, (challenges) => challenges.owner, {
+    cascade: true,
+  })
+  madeChallenges: Challenge[];
+
+  @OneToMany(
+    (type) => Participation,
+    (participations) => participations.participant,
+    { cascade: true }
+  )
+  participations: Participation[];
 }

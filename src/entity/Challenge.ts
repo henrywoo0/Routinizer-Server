@@ -1,11 +1,14 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import Participation from "./Participation";
 import User from "./User";
 
 @Entity("Challenge")
@@ -34,9 +37,16 @@ export default class Challenge extends BaseEntity {
   })
   benefit: string;
 
-  @ManyToOne((type) => User)
+  @ManyToOne((type) => User, (user) => user.madeChallenges, {
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE",
+  })
   owner: User;
 
-  @ManyToMany((type) => User)
-  participants: User[];
+  @OneToMany(
+    (type) => Participation,
+    (participations) => participations.challenge,
+    { cascade: true }
+  )
+  participations: Participation[];
 }
