@@ -14,10 +14,15 @@ export default async (req, res: Response) => {
     user.password = bcrypt.hashSync(password, 10);
     user.avatar = file || "";
     await user.save();
+
+    return res.status(200).json({
+      status: 200,
+      message: "회원가입에 성공했습니다.",
+    });
   } catch (error) {
     return res.status(500).json({
       status: 500,
-      message: "서버 오류로 인해 회원가입에 실패했습니다.",
+      message: "서버 오류로 인해 회원가입하지 못했습니다.",
     });
   }
 };
