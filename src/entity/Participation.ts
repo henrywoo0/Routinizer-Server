@@ -4,19 +4,39 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import Challenge from "./Challenge";
+import Proof from "./Proof";
 import User from "./User";
 
 @Entity("Participation")
 export default class Participation extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("increment")
   id: number;
 
   @Column()
   @CreateDateColumn()
   createdAt: Date;
+
+  @Column({
+    nullable: false,
+    default: 0,
+  })
+  dateCount: number;
+
+  @Column({
+    nullable: false,
+    default: 0,
+  })
+  successCount: number;
+
+  @Column({
+    nullable: false,
+    default: 0,
+  })
+  failCount: number;
 
   @ManyToOne((type) => Challenge, (challenge) => challenge.participations, {
     onUpdate: "CASCADE",
@@ -30,18 +50,6 @@ export default class Participation extends BaseEntity {
   })
   participant: User;
 
-  @Column({
-    default: 0,
-  })
-  dateCount: number;
-
-  @Column({
-    default: 0,
-  })
-  successCount: number;
-
-  @Column({
-    default: 0,
-  })
-  failCount: number;
+  @OneToMany((type) => Proof, (proofs) => proofs.participation)
+  proofs: Proof[];
 }
