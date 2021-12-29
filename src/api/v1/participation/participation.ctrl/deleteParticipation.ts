@@ -27,6 +27,9 @@ export default async (req, res: Response) => {
       });
     }
     await participation.remove();
+    challenge.participationCount--;
+    challenge.participantCount--;
+    await challenge.save();
     return res.status(200).json({
       status: 200,
       message: "챌린지 취소에 성공했습니다.",

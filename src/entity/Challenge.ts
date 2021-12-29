@@ -37,6 +37,18 @@ export default class Challenge extends BaseEntity {
   })
   benefit: string;
 
+  @Column({
+    nullable: false,
+    default: 0,
+  })
+  participationCount: number;
+
+  @Column({
+    nullable: false,
+    default: 0,
+  })
+  participantCount: number;
+
   @ManyToOne((type) => User, (user) => user.madeChallenges, {
     onUpdate: "CASCADE",
     onDelete: "CASCADE",
@@ -49,4 +61,8 @@ export default class Challenge extends BaseEntity {
     { cascade: true }
   )
   participations: Participation[];
+
+  @Column()
+  @CreateDateColumn()
+  createdAt: Date;
 }

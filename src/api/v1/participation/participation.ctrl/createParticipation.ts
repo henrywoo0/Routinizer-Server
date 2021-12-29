@@ -29,6 +29,9 @@ export default async (req, res: Response) => {
     }
     participation.challenge = challenge;
     participation.participant = user;
+    await participation.save();
+    challenge.participationCount++;
+    challenge.participantCount++;
     await challenge.save();
     return res.status(200).json({
       status: 200,
