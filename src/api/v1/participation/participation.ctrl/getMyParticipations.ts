@@ -8,11 +8,13 @@ export default async (req, res) => {
   try {
     const user = await User.findOne({ id });
     const participationRepository = getRepository(Participation);
-    const participations = participationRepository.find({
-      where: {
-        participant: user,
-      },
-    });
+    const participations = participationRepository
+      .createQueryBuilder("participation")
+      .select(["challenge"])
+      .innerJoinAndSelect("participation.challenge", "challenge")
+      .where("participation.user = :user", { user })
+      .orderBy("participation.createdAt", "DESC")
+      .getMany();
     return res.status(200).json({
       status: 200,
       message: "내 챌린지 조회에 성공했습니다.",

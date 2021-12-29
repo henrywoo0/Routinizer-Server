@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
 import * as multer from "multer";
 
 export const verifyToken = (req, res, next) => {
