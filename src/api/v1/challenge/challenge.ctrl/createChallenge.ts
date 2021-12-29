@@ -4,8 +4,7 @@ import User from "../../../../entity/User";
 
 export default async (req, res: Response) => {
   const challenge = new Challenge();
-  const { title, category, benefit } = req.body;
-  const { file } = req;
+  const { title, category, benefit, image } = req.body;
   const { id } = req.user;
 
   try {
@@ -14,7 +13,7 @@ export default async (req, res: Response) => {
     challenge.title = title;
     challenge.category = category;
     challenge.benefit = benefit;
-    challenge.image = file.path;
+    challenge.image = image;
     await challenge.save();
 
     return res.status(200).json({
