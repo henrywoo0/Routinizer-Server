@@ -8,8 +8,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import Participation from "./Participation";
-import User from "./User";
+import Participation from "./Participation.entity";
+import User from "./User.entity";
 
 @Entity("Challenge")
 export default class Challenge extends BaseEntity {
@@ -42,12 +42,6 @@ export default class Challenge extends BaseEntity {
     default: 0,
   })
   participationCount: number;
-
-  @Column({
-    nullable: false,
-    default: 0,
-  })
-  participantCount: number;
 
   @ManyToOne((type) => User, (user) => user.madeChallenges, {
     onUpdate: "CASCADE",

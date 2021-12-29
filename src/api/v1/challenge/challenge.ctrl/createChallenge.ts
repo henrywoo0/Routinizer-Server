@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
-import Challenge from "../../../../entity/Challenge";
-import User from "../../../../entity/User";
+import createChallengeDto from "../../../../dto/createChallenge.dto";
+import Challenge from "../../../../entity/Challenge.entity";
+import User from "../../../../entity/User.entity";
 
 export default async (req, res: Response) => {
   const challenge = new Challenge();
-  const { title, category, benefit, image } = req.body;
-  const { id } = req.user;
+  const { title, category, benefit, image }: createChallengeDto = req.body;
+  const { id }: { id: string } = req.user;
 
   try {
-    const user = await User.findOne({ id });
+    const user: User = await User.findOne({ id });
     challenge.owner = user;
     challenge.title = title;
     challenge.category = category;

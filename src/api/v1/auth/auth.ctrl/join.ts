@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import User from "../../../../entity/User";
+import User from "../../../../entity/User.entity";
 import * as bcrypt from "bcrypt";
 
-export default async (req, res: Response) => {
+export default async (req: Request, res: Response) => {
   const user = new User();
   const { name, school, id, password, avatar } = req.body;
 

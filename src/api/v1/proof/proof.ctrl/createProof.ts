@@ -1,7 +1,7 @@
 import { Response } from "express";
-import Participation from "../../../../entity/Participation";
-import Proof from "../../../../entity/Proof";
-import User from "../../../../entity/User";
+import Participation from "../../../../entity/Participation.entity";
+import Proof from "../../../../entity/Proof.entity";
+import User from "../../../../entity/User.entity";
 
 export default async (req, res: Response) => {
   const proof = new Proof();

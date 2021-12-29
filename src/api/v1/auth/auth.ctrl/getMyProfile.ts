@@ -1,12 +1,12 @@
 import { getRepository } from "typeorm";
-import Participation from "../../../../entity/Participation";
-import User from "../../../../entity/User";
+import Participation from "../../../../entity/Participation.entity";
+import User from "../../../../entity/User.entity";
 
 export default async (req, res) => {
-  const { id } = req.user;
+  const { id }: { id: string } = req.user;
 
   try {
-    const user = await User.findOne({ id });
+    const user: User = await User.findOne({ id });
     const participations = await getRepository(Participation).find({
       where: {
         participant: user,

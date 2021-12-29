@@ -6,8 +6,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import Participation from "./Participation";
-import User from "./User";
+import Participation from "./Participation.entity";
+import User from "./User.entity";
 
 @Entity("Proof")
 export default class Proof extends BaseEntity {

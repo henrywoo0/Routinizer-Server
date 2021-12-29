@@ -1,10 +1,10 @@
 import { getRepository } from "typeorm";
-import Challenge from "../../../../entity/Challenge";
+import Challenge from "../../../../entity/Challenge.entity";
 
 export default async (req, res) => {
   try {
     const challengeRepository = getRepository(Challenge);
-    const challenges = await challengeRepository.find({
+    const challenges: Challenge[] = await challengeRepository.find({
       order: {
         createdAt: "DESC",
       },

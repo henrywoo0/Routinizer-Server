@@ -6,9 +6,9 @@ import {
   OneToMany,
   PrimaryColumn,
 } from "typeorm";
-import Challenge from "./Challenge";
-import Participation from "./Participation";
-import Proof from "./Proof";
+import Challenge from "./Challenge.entity";
+import Participation from "./Participation.entity";
+import Proof from "./Proof.entity";
 
 @Entity("User")
 export default class User extends BaseEntity {

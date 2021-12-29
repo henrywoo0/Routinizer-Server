@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import User from "../../../../entity/User";
+import User from "../../../../entity/User.entity";
 import * as jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
+import Login from "../../../../dto/login.dto";
 
 export default async (req: Request, res: Response) => {
-  const { id, password } = req.body;
+  const { id, password }: Login = req.body;
   try {
     const user: User = await User.findOne({ id });
     if (!user) {
@@ -13,14 +14,14 @@ export default async (req: Request, res: Response) => {
         message: "해당 아이디를 가진 계정이 없습니다.",
       });
     }
-    const ok = await bcrypt.compare(password, user.password);
-    if (!ok) {
+    const ok: true | false = await bcrypt.compare(password, user.password);
+    if (ok === false) {
       return res.status(400).json({
         status: 400,
         message: "비밀번호가 옳지 않습니다.",
       });
     }
-    const token = jwt.sign(
+    const token: string = jwt.sign(
       {
         id,
       },

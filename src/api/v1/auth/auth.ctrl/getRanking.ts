@@ -1,10 +1,10 @@
 import { getRepository } from "typeorm";
-import User from "../../../../entity/User";
+import User from "../../../../entity/User.entity";
 
 export default async (req, res) => {
   try {
     const userRepository = getRepository(User);
-    const users = await userRepository.find({
+    const users: User[] = await userRepository.find({
       order: {
         point: "DESC",
       },

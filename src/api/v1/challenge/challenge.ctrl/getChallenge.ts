@@ -1,11 +1,21 @@
-import Challenge from "../../../../entity/Challenge";
+import { getRepository } from "typeorm";
+import Challenge from "../../../../entity/Challenge.entity";
+import Participation from "../../../../entity/Participation.entity";
 
 export default async (req, res) => {
-  const { idx } = req.params;
+  const { idx }: { idx: string } = req.params;
 
   try {
-    const challenge = await Challenge.findOne({
-      id: idx,
+    const challenge: Challenge = await Challenge.findOne({
+      id: parseInt(idx),
+    });
+    const continuous: number = await getRepository(Participation).count({
+      where: {
+        challenge,
+      },
+      order: {
+        dateCount: "DESC",
+      },
     });
     if (!challenge) {
       return res.status(404).json({
@@ -16,7 +26,8 @@ export default async (req, res) => {
     return res.status(200).json({
       status: 200,
       message: "챌린지 조회에 성공했습니다.",
-      challenge,
+      ...challenge,
+      continuous,
     });
   } catch (error) {
     return res.status(500).json({

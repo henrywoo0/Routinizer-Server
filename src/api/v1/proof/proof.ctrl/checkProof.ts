@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import Participation from "../../../../entity/Participation";
+import Participation from "../../../../entity/Participation.entity";
 
 export default async () => {
   try {

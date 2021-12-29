@@ -1,15 +1,15 @@
 import { Response } from "express";
-import Challenge from "../../../../entity/Challenge";
-import Participation from "../../../../entity/Participation";
-import User from "../../../../entity/User";
+import Challenge from "../../../../entity/Challenge.entity";
+import Participation from "../../../../entity/Participation.entity";
+import User from "../../../../entity/User.entity";
 
 export default async (req, res: Response) => {
-  const { idx } = req.params;
-  const { id } = req.user;
+  const { idx }: { idx: string } = req.params;
+  const { id }: { id: string } = req.user;
 
   try {
     const user = await User.findOne({ id });
-    const challenge = await Challenge.findOne({ id: idx });
+    const challenge = await Challenge.findOne({ id: parseInt(idx) });
     if (!challenge) {
       return res.status(404).json({
         status: 404,
@@ -28,7 +28,6 @@ export default async (req, res: Response) => {
     }
     await participation.remove();
     challenge.participationCount--;
-    challenge.participantCount--;
     await challenge.save();
     return res.status(200).json({
       status: 200,
