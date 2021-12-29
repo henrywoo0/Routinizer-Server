@@ -12,7 +12,7 @@ export default async (req, res: Response) => {
     user.school = school;
     user.id = id;
     user.password = await bcrypt.hash(password, 10);
-    user.avatar = file || "";
+    user.avatar = file ? file.path : "";
     await user.save();
 
     return res.status(200).json({

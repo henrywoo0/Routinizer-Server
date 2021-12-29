@@ -14,6 +14,7 @@ export default async (req, res: Response) => {
     challenge.title = title;
     challenge.category = category;
     challenge.benefit = benefit;
+    challenge.image = file.path;
     await challenge.save();
 
     return res.status(200).json({

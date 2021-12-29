@@ -7,6 +7,7 @@ export default async (req, res: Response) => {
   const proof = new Proof();
   const { idx } = req.params;
   const { id } = req.user;
+  const { file } = req;
 
   try {
     const user = await User.findOne({ id });
@@ -16,9 +17,17 @@ export default async (req, res: Response) => {
     if (!participation) {
       return res.status(404).json({
         status: 404,
-        message: "",
+        message: "인증할 챌린지를 찾지 못했습니다.",
       });
     }
+    proof.user = user;
+    proof.participation = participation;
+    proof.image = file.path;
+    await proof.save();
+    return res.status(200).json({
+      status: 200,
+      message: "일일 인증에 성공했습니다.",
+    });
   } catch (error) {
     return res.status(500).json({
       status: 500,
