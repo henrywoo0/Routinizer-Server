@@ -4,7 +4,9 @@ import Participation from "../../../../entity/Participation.entity";
 export default async () => {
   try {
     const participationRepository = getRepository(Participation);
-    const participations = await participationRepository.find({});
+    const participations: Participation[] = await participationRepository.find(
+      {}
+    );
     for (const participation of participations) {
       // check whether someone upload the image or not
     }

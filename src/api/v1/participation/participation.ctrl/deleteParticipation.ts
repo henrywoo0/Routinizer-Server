@@ -8,15 +8,15 @@ export default async (req, res: Response) => {
   const { id }: { id: string } = req.user;
 
   try {
-    const user = await User.findOne({ id });
-    const challenge = await Challenge.findOne({ id: parseInt(idx) });
+    const user: User = await User.findOne({ id });
+    const challenge: Challenge = await Challenge.findOne({ id: parseInt(idx) });
     if (!challenge) {
       return res.status(404).json({
         status: 404,
         message: "취소할 챌린지를 찾지 못했습니다.",
       });
     }
-    const participation = await Participation.findOne({
+    const participation: Participation = await Participation.findOne({
       challenge,
       participant: user,
     });

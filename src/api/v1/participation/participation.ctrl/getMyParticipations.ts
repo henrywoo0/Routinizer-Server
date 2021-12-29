@@ -3,10 +3,10 @@ import Participation from "../../../../entity/Participation.entity";
 import User from "../../../../entity/User.entity";
 
 export default async (req, res) => {
-  const { id } = req.user;
+  const { id }: { id: string } = req.user;
 
   try {
-    const user = await User.findOne({ id });
+    const user: User = await User.findOne({ id });
     const participationRepository = getRepository(Participation);
     const participations = participationRepository
       .createQueryBuilder("participation")

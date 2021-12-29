@@ -16,8 +16,9 @@ export default async (req, res) => {
       },
     });
     const count: number = participations.length;
-    const continuous: number = participations[0].dateCount;
-
+    const continuous: number = participations[0]
+      ? participations[0].dateCount
+      : 0;
     return res.status(200).json({
       status: 200,
       message: "프로필 조회에 성공했습니다.",

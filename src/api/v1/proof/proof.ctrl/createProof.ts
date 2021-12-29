@@ -5,14 +5,14 @@ import User from "../../../../entity/User.entity";
 
 export default async (req, res: Response) => {
   const proof = new Proof();
-  const { image } = req.body;
-  const { idx } = req.params;
-  const { id } = req.user;
+  const { image }: { image: string } = req.body;
+  const { idx }: { idx: string } = req.params;
+  const { id }: { id: string } = req.user;
 
   try {
-    const user = await User.findOne({ id });
-    const participation = await Participation.findOne({
-      id: idx,
+    const user: User = await User.findOne({ id });
+    const participation: Participation = await Participation.findOne({
+      id: parseInt(idx),
     });
     if (!participation) {
       return res.status(404).json({
