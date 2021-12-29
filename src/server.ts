@@ -5,10 +5,13 @@ import * as cors from "cors";
 import { createConnection } from "typeorm";
 import connectOptions from "../ormconfig";
 import api from "./api";
+import * as schedule from "node-schedule";
+import checkProof from "./api/v1/proof/proof.ctrl/checkProof";
 
 const app = express();
 const logger = morgan("dev");
 const bodyParser = require("body-parser");
+const job = schedule.scheduleJob("0 0 0 * * *", checkProof);
 
 app.use(cors());
 app.use(logger);

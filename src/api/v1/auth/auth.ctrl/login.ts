@@ -10,7 +10,7 @@ export default async (req: Request, res: Response) => {
     if (!user) {
       return res.status(400).json({
         status: 400,
-        message: "해당 전화번호를 가진 계정이 없습니다.",
+        message: "해당 아이디를 가진 계정이 없습니다.",
       });
     }
     const ok = await bcrypt.compare(password, user.password);

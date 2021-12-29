@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { upload, verifyToken } from "../../../middlewares";
+import { verifyToken } from "../../../middlewares";
 import createChallenge from "./challenge.ctrl/createChallenge";
 import getChallenge from "./challenge.ctrl/getChallenge";
 import getExerciseChallenges from "./challenge.ctrl/getExerciseChallenges";

@@ -1,11 +1,13 @@
-import { Response } from "express";
+import { getRepository } from "typeorm";
+import Participation from "../../../../entity/Participation";
 
-export default async (req, res: Response) => {
+export default async () => {
   try {
+    const participationRepository = getRepository(Participation);
+    const participations = await participationRepository.find({});
+    for (const participation of participations) {
+    }
   } catch (error) {
-    return res.status(500).json({
-      status: 500,
-      message: "서버 오류로 인해 인증을 확인하지 못했습니다.",
-    });
+    console.log(error);
   }
 };
