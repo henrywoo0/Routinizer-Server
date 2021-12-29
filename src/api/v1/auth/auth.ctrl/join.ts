@@ -4,15 +4,14 @@ import * as bcrypt from "bcrypt";
 
 export default async (req, res: Response) => {
   const user = new User();
-  const { name, school, id, password } = req.body;
-  const { file } = req;
+  const { name, school, id, password, avatar } = req.body;
 
   try {
     user.name = name;
     user.school = school;
     user.id = id;
     user.password = await bcrypt.hash(password, 10);
-    user.avatar = file ? file.path : "";
+    user.avatar = avatar || "";
     await user.save();
 
     return res.status(200).json({

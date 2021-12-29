@@ -4,6 +4,6 @@ import createProof from "./proof.ctrl/createProof";
 
 const router = Router();
 
-router.post("/:idx", verifyToken, upload.single("img"), createProof);
+router.post("/:idx", verifyToken, createProof);
 
 export default router;

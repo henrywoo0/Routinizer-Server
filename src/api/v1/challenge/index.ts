@@ -4,6 +4,6 @@ import createChallenge from "./challenge.ctrl/createChallenge";
 
 const router = Router();
 
-router.post("/", verifyToken, upload.single("img"), createChallenge);
+router.post("/", verifyToken, createChallenge);
 
 export default router;

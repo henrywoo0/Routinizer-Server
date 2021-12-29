@@ -5,9 +5,9 @@ import User from "../../../../entity/User";
 
 export default async (req, res: Response) => {
   const proof = new Proof();
+  const { image } = req.body;
   const { idx } = req.params;
   const { id } = req.user;
-  const { file } = req;
 
   try {
     const user = await User.findOne({ id });
@@ -22,7 +22,7 @@ export default async (req, res: Response) => {
     }
     proof.user = user;
     proof.participation = participation;
-    proof.image = file.path;
+    proof.image = image;
     await proof.save();
     return res.status(200).json({
       status: 200,

@@ -22,7 +22,7 @@ createConnection(connectOptions)
     console.log("✅ Connected to DB");
     app.listen(process.env.PORT, () => {
       console.log(
-        `✅ Server listenting on port http://localhost:${process.env.PORT} 🚀`
+        `✅ Server listening on port http://localhost:${process.env.PORT} 🚀`
       );
     });
   })
