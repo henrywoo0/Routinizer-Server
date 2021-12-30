@@ -8,11 +8,11 @@ export default async (req, res) => {
   try {
     const user: User = await User.findOne({ id });
     const participationRepository = getRepository(Participation);
-    const participations = participationRepository
+    const participations = await participationRepository
       .createQueryBuilder("participation")
-      .select(["challenge"])
+      .select(["challengeId"])
       .innerJoinAndSelect("participation.challenge", "challenge")
-      .where("participation.user = :user", { user })
+      .where("participation.participant = :user", { user: user.id })
       .orderBy("participation.createdAt", "DESC")
       .getMany();
     return res.status(200).json({
